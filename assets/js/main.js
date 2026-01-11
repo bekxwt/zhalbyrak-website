@@ -390,29 +390,6 @@
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Mobile nav toggle (existing)
-  const navToggle = document.getElementById("navToggle");
-  const mobileNav = document.getElementById("mobileNav");
-  function setOpen(open) {
-    if (!navToggle || !mobileNav) return;
-    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    mobileNav.hidden = !open;
-    if (!open) mobileNav.scrollTop = 0;
-  }
-  if (navToggle && mobileNav) {
-    navToggle.addEventListener("click", () => {
-      const expanded = navToggle.getAttribute("aria-expanded") === "true";
-      setOpen(!expanded);
-    });
-    mobileNav.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target && target.tagName === "A") setOpen(false);
-    });
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 980) setOpen(false);
-    });
-  }
-
   // Language buttons
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {
