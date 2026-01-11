@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#2C015D" />
+
+    <title>ZHALBYRAK — Educational App</title>
+    <meta
+      name="description"
+      content="ZHALBYRAK is an educational app designed to help learners practice and improve across key subjects with progress tracking and motivation."
+    />
+
+    <meta property="og:title" content="ZHALBYRAK — Educational App" />
+    <meta property="og:description" content="Practice. Progress. Stay motivated with ZHALBYRAK." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zhalbyrak.com/" />
+    <meta property="og:image" content="https://zhalbyrak.com/assets/img/og-cover.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/img/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+
+  <body>
+    <div class="bg">
+      <div class="bg__grid"></div>
+      <div class="bg__blob bg__blob--1"></div>
+      <div class="bg__blob bg__blob--2"></div>
+      <div class="bg__blob bg__blob--3"></div>
+    </div>
+
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="/" aria-label="ZHALBYRAK Home">
+          <img
+            class="brand__logo"
+            src="/assets/img/logo.svg"
+            alt="ZHALBYRAK Logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+          />
+          <span class="brand__logoFallback" aria-hidden="true">Z</span>
+          <div class="brand__text">
+            <span class="brand__name">ZHALBYRAK</span>
+            <span class="brand__tag" data-brand-tag>Educational app</span>
+          </div>
+        </a>
+
+        <nav class="nav">
+          <a class="nav__link" href="#features" data-i18n="nav.features">Features</a>
+          <a class="nav__link" href="#how" data-i18n="nav.how">How it works</a>
+          <a class="nav__link" href="#download" data-i18n="nav.download">Download</a>
+          <a class="nav__link" href="/privacy.html" data-i18n="nav.privacy">Privacy</a>
+        </nav>
+
+        <div class="lang" aria-label="Language selector">
+          <button class="lang__btn" type="button" data-lang-btn="ru" aria-pressed="false">RU</button>
+          <button class="lang__btn" type="button" data-lang-btn="ky" aria-pressed="false">KY</button>
+        </div>
+
+        <button class="navToggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="mobileNav" id="mobileNav" hidden>
+        <a class="mobileNav__link" href="#features" data-i18n="nav.features">Features</a>
+        <a class="mobileNav__link" href="#how" data-i18n="nav.how">How it works</a>
+        <a class="mobileNav__link" href="#download" data-i18n="nav.download">Download</a>
+        <a class="mobileNav__link" href="/privacy.html" data-i18n="nav.privacy">Privacy</a>
+        <a class="mobileNav__link" href="/terms.html" data-i18n="nav.terms">Terms</a>
+
+        <div style="display:flex; gap:10px; margin-top:8px;">
+          <button class="btn btn--ghost" type="button" data-lang-btn="ru" aria-pressed="false">RU</button>
+          <button class="btn btn--ghost" type="button" data-lang-btn="ky" aria-pressed="false">KY</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <div class="pill">
+              <span class="pill__dot"></span>
+              <span data-i18n="hero.pill">Practice • Progress • Motivation</span>
+            </div>
+
+            <h1 class="hero__title">
+              <span data-i18n="hero.titleA">Learn smarter with</span>
+              <span class="gradText" data-i18n="hero.titleB">ZHALBYRAK</span>
+            </h1>
+
+            <p class="hero__subtitle" data-i18n="hero.subtitle">
+              An educational app built to help you practice consistently, track your improvements,
+              and stay motivated with streaks and results.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#download" data-i18n="hero.ctaPrimary">Get the app</a>
+              <a class="btn btn--ghost" href="#features" data-i18n="hero.ctaSecondary">See features</a>
+            </div>
+
+            <div class="hero__meta">
+              <div class="metaCard">
+                <div class="metaCard__label" data-i18n="meta.focusL">Focus</div>
+                <div class="metaCard__value" data-i18n="meta.focusV">Daily practice</div>
+              </div>
+              <div class="metaCard">
+                <div class="metaCard__label" data-i18n="meta.trackingL">Tracking</div>
+                <div class="metaCard__value" data-i18n="meta.trackingV">Stats & progress</div>
+              </div>
+              <div class="metaCard">
+                <div class="metaCard__label" data-i18n="meta.motivationL">Motivation</div>
+                <div class="metaCard__value" data-i18n="meta.motivationV">Streaks & rewards</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__visual" aria-hidden="true">
+            <div class="phone">
+              <div class="phone__top">
+                <div class="phone__notch"></div>
+              </div>
+              <div class="phone__screen">
+                <div class="screenCard screenCard--header">
+                  <div class="screenCard__row">
+                    <div class="chip chip--purple" data-i18n="phone.chipStreak">Streak</div>
+                    <div class="chip chip--gold" data-i18n="phone.chipTrophies">Trophies</div>
+                  </div>
+                  <div class="screenCard__title" data-i18n="phone.today">Today’s practice</div>
+                  <div class="progress">
+                    <div class="progress__bar" style="width: 72%"></div>
+                  </div>
+                </div>
+
+                <div class="screenGrid">
+                  <div class="screenCard">
+                    <div class="screenCard__kicker" data-i18n="phone.math">Math</div>
+                    <div class="screenCard__stat">+12</div>
+                    <div class="screenCard__hint" data-i18n="phone.q">questions</div>
+                  </div>
+                  <div class="screenCard">
+                    <div class="screenCard__kicker" data-i18n="phone.reading">Reading</div>
+                    <div class="screenCard__stat">8m</div>
+                    <div class="screenCard__hint" data-i18n="phone.practice">practice</div>
+                  </div>
+                  <div class="screenCard">
+                    <div class="screenCard__kicker" data-i18n="phone.grammar">Grammar</div>
+                    <div class="screenCard__stat">92%</div>
+                    <div class="screenCard__hint" data-i18n="phone.accuracy">accuracy</div>
+                  </div>
+                  <div class="screenCard">
+                    <div class="screenCard__kicker" data-i18n="phone.analogy">Analogy</div>
+                    <div class="screenCard__stat">+3</div>
+                    <div class="screenCard__hint" data-i18n="phone.levels">levels</div>
+                  </div>
+                </div>
+
+                <div class="screenCard screenCard--footer">
+                  <div class="screenCard__title" data-i18n="phone.recent">Recent results</div>
+                  <div class="resultRow">
+                    <div class="badge badge--red" data-i18n="phone.band0">0–20</div>
+                    <div class="badge badge--yellow" data-i18n="phone.band1">20–40</div>
+                    <div class="badge badge--green" data-i18n="phone.band2">40–60</div>
+                    <div class="badge badge--blue" data-i18n="phone.band3">60–80</div>
+                    <div class="badge badge--purple" data-i18n="phone.band4">80–100</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="floatCard floatCard--1">
+              <div class="floatCard__title" data-i18n="float.aTitle">Adaptive UI</div>
+              <div class="floatCard__text" data-i18n="float.aText">Responsive layout for any device</div>
+            </div>
+
+            <div class="floatCard floatCard--2">
+              <div class="floatCard__title" data-i18n="float.bTitle">Statistics</div>
+              <div class="floatCard__text" data-i18n="float.bText">Track performance over time</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title" data-i18n="features.title">Features</h2>
+            <p class="section__subtitle" data-i18n="features.subtitle">
+              A focused set of tools to help you learn consistently and see real progress.
+            </p>
+          </div>
+
+          <div class="cards">
+            <article class="card" data-feature-card>
+              <div class="card__icon" data-feature-icon>📊</div>
+              <h3 class="card__title" data-feature-title>Advanced statistics</h3>
+              <p class="card__text" data-feature-text>Clear progress indicators and insights.</p>
+            </article>
+
+            <article class="card" data-feature-card>
+              <div class="card__icon" data-feature-icon>🔥</div>
+              <h3 class="card__title" data-feature-title>Streak system</h3>
+              <p class="card__text" data-feature-text>Maintain daily consistency.</p>
+            </article>
+
+            <article class="card" data-feature-card>
+              <div class="card__icon" data-feature-icon>🏆</div>
+              <h3 class="card__title" data-feature-title>Motivation & rewards</h3>
+              <p class="card__text" data-feature-text>Earn trophies and keep momentum.</p>
+            </article>
+
+            <article class="card" data-feature-card>
+              <div class="card__icon" data-feature-icon>🧩</div>
+              <h3 class="card__title" data-feature-title>Core subject sections</h3>
+              <p class="card__text" data-feature-text>Math, reading, grammar, analogy.</p>
+            </article>
+
+            <article class="card" data-feature-card>
+              <div class="card__icon" data-feature-icon>📱</div>
+              <h3 class="card__title" data-feature-title>Mobile-first design</h3>
+              <p class="card__text" data-feature-text>Clean interface for any phone size.</p>
+            </article>
+
+            <article class="card" data-feature-card>
+              <div class="card__icon" data-feature-icon>🔒</div>
+              <h3 class="card__title" data-feature-title>Privacy-minded</h3>
+              <p class="card__text" data-feature-text>Privacy pages ready to customize.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title" data-i18n="how.title">How it works</h2>
+            <p class="section__subtitle" data-i18n="how.subtitle">A simple loop.</p>
+          </div>
+
+          <div class="steps">
+            <div class="step" data-step>
+              <div class="step__num" data-step-num>1</div>
+              <div class="step__body">
+                <div class="step__title" data-step-title>Choose a section</div>
+                <div class="step__text" data-step-text>Pick the subject area.</div>
+              </div>
+            </div>
+
+            <div class="step" data-step>
+              <div class="step__num" data-step-num>2</div>
+              <div class="step__body">
+                <div class="step__title" data-step-title>Complete a short session</div>
+                <div class="step__text" data-step-text>Stay focused.</div>
+              </div>
+            </div>
+
+            <div class="step" data-step>
+              <div class="step__num" data-step-num>3</div>
+              <div class="step__body">
+                <div class="step__title" data-step-title>Review your stats</div>
+                <div class="step__text" data-step-text>See progress in one place.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="download">
+        <div class="container">
+          <div class="cta">
+            <div class="cta__content">
+              <h2 class="cta__title" data-i18n="download.title">Download ZHALBYRAK</h2>
+              <p class="cta__text" data-i18n="download.text">
+                Replace these buttons with your real store links.
+              </p>
+
+              <div class="cta__buttons">
+                <a class="btn btn--primary" href="#" aria-disabled="true" data-i18n="download.gp">Google Play (soon)</a>
+                <a class="btn btn--ghost" href="#" aria-disabled="true" data-i18n="download.as">App Store (soon)</a>
+              </div>
+
+              <div class="cta__note">
+                <span data-support-label>For support:</span>
+                <a class="link" href="mailto:support@zhalbyrak.com">support@zhalbyrak.com</a>
+              </div>
+            </div>
+
+            <div class="cta__side">
+              <div class="miniStats">
+                <div class="miniStats__row">
+                  <div class="miniStats__label" data-i18n="side.adaptive">Adaptive layout</div>
+                  <div class="miniStats__val">✓</div>
+                </div>
+                <div class="miniStats__row">
+                  <div class="miniStats__label" data-i18n="side.tracking">Progress tracking</div>
+                  <div class="miniStats__val">✓</div>
+                </div>
+                <div class="miniStats__row">
+                  <div class="miniStats__label" data-i18n="side.streak">Streak motivation</div>
+                  <div class="miniStats__val">✓</div>
+                </div>
+              </div>
+
+              <div class="ctaBadge">
+                <div class="ctaBadge__title" data-i18n="side.brandReadyT">Brand-ready</div>
+                <div class="ctaBadge__text" data-i18n-html="side.brandReadyD">
+                  Drop your logo into <code>/assets/img/</code> and deploy.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="footer__brand">
+            <span class="footer__mark">Z</span>
+            <div>
+              <div class="footer__name">ZHALBYRAK</div>
+              <div class="footer__tag" data-brand-tag>Educational app</div>
+            </div>
+          </div>
+
+          <div class="footer__small">
+            © <span id="year"></span> ZHALBYRAK. <span data-footer-rights>All rights reserved.</span>
+          </div>
+        </div>
+
+        <div class="footer__right">
+          <a class="footer__link" href="/privacy.html" data-i18n="nav.privacy">Privacy Policy</a>
+          <a class="footer__link" href="/terms.html" data-i18n="nav.terms">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>
