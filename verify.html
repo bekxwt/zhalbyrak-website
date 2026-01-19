@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/styles.css" />
 
     <style>
-      /* Minimal standalone layout (won’t break your existing CSS) */
       body {
         background: #ffffff;
         margin: 0;
@@ -34,7 +33,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        margin-bottom: 14px;
+        margin-bottom: 10px;
       }
       .logo {
         width: 42px;
@@ -52,7 +51,7 @@
         color: #2A1A57;
       }
       .muted {
-        margin: 10px 0 16px;
+        margin: 8px 0 16px;
         color: rgba(0,0,0,.65);
         line-height: 1.45;
       }
@@ -75,6 +74,7 @@
       }
       @keyframes spin { to { transform: rotate(360deg); } }
 
+      /* status colors controlled by JS (ok/err classes on #statusBox) */
       .ok { background: rgba(46, 204, 113, .12); border-color: rgba(46, 204, 113, .25); }
       .err { background: rgba(231, 76, 60, .12); border-color: rgba(231, 76, 60, .25); }
 
@@ -119,10 +119,12 @@
       <div class="card">
         <div class="brand">
           <div class="logo">Z</div>
-          <h1>Email verification</h1>
+          <!-- JS will localize this if id="pageTitle" exists -->
+          <h1 id="pageTitle">Email verification</h1>
         </div>
 
-        <p class="muted">
+        <!-- JS will localize this if id="pageSubtitle" exists -->
+        <p class="muted" id="pageSubtitle">
           This page verifies your email for ZHALBYRAK.
         </p>
 
@@ -136,12 +138,19 @@
 
         <div class="actions" id="actions" style="display:none;">
           <button class="btn btn-primary" id="btnOpenApp" type="button">Open the app</button>
+          <button class="btn btn-ghost" id="btnHome" type="button">Home</button>
+        </div>
+
+        <!-- JS will localize this if id="hint" exists -->
+        <div id="hint" class="small" style="margin-top: 12px;">
+          If this page gets stuck, reopen the email and try again.
         </div>
 
         <div id="debug" class="small" style="display:none;"></div>
       </div>
     </div>
 
+    <!-- IMPORTANT: must match your real deployed path -->
     <script type="module" src="/assets/js/verify.js"></script>
   </body>
 </html>
