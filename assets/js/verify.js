@@ -1,4 +1,8 @@
-// /js/verify.js
+// /assets/js/verify.js
+// Firebase email verification landing page for zhalbyrak.app/verify.html
+// Supports RU/KY UI based on ?lang=ru|ky or Firebase-provided lang.
+// Robust against missing DOM ids.
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
 import {
   getAuth,
@@ -6,6 +10,7 @@ import {
   checkActionCode,
 } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 
+/* ---------------- Firebase config ---------------- */
 const firebaseConfig = {
   apiKey: "AIzaSyAkZoWLttwhP4ynlG5vU0YUYFdXYALBG2A",
   authDomain: "secom-f3642.firebaseapp.com",
@@ -18,6 +23,49 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+/* ---------------- i18n ---------------- */
+const I18N = {
+  ru: {
+    pageTitle: "Подтверждение email",
+    pageSubtitle: "Эта страница подтверждает ваш email для ZHALBYRAK.",
+    verifyingTitle: "Подтверждаем email…",
+    verifyingDetail: "Пожалуйста, подождите.",
+    invalidTitle: "Некорректная ссылка",
+    invalidDetail: "Откройте самое новое письмо и попробуйте снова.",
+    okTitle: "Email подтверждён",
+    okDetail: "Вернитесь в приложение и выполните вход.",
+    failTitle: "Не удалось подтвердить",
+    failDetail:
+      "Ссылка могла истечь или уже использована. Запросите новое письмо в приложении.",
+    btnOpen: "Открыть приложение",
+    btnHome: "На сайт",
+    hint: "Если страница не обновляется — закройте и откройте письмо заново.",
+  },
+  ky: {
+    pageTitle: "Email тастыктоо",
+    pageSubtitle: "Бул баракча ZHALBYRAK үчүн email’иңизди тастыктайт.",
+    verifyingTitle: "Email тастыкталууда…",
+    verifyingDetail: "Күтүп туруңуз.",
+    invalidTitle: "Туура эмес шилтеме",
+    invalidDetail: "Эң акыркы катты ачып, кайра аракет кылыңыз.",
+    okTitle: "Email тастыкталды",
+    okDetail: "Колдонмого кайтып, кирип алыңыз.",
+    failTitle: "Тастыктоо ишке ашкан жок",
+    failDetail:
+      "Шилтеме мөөнөтү өтүп кеткен же колдонулган болушу мүмкүн. Колдонмодон жаңы кат жөнөтүңүз.",
+    btnOpen: "Колдонмону ачуу",
+    btnHome: "Сайтка өтүү",
+    hint: "Эгер жаңырбаса — катты жаап, кайра ачыңыз.",
+  },
+};
+
+function lang2ruKy(raw) {
+  const s = String(raw || "").toLowerCase();
+  if (s.startsWith("ky") || s.startsWith("kg") || s.includes("ky")) return "ky";
+  return "ru";
+}
+
+/* ---------------- DOM helpers (null-safe) ---------------- */
 const els = {
   box: document.getElementById("statusBox"),
   spinner: document.getElementById("spinner"),
@@ -27,10 +75,29 @@ const els = {
   btnOpenApp: document.getElementById("btnOpenApp"),
   btnHome: document.getElementById("btnHome"),
   debug: document.getElementById("debug"),
-  // Optional: if you later want to localize h1 text too:
-  // h1: document.querySelector("h1"),
-  // muted: document.querySelector(".muted"),
+
+  // Optional static labels (if present in html)
+  pageTitle: document.getElementById("pageTitle"),
+  pageSubtitle: document.getElementById("pageSubtitle"),
+  hint: document.getElementById("hint"),
 };
+
+function setText(el, value) {
+  if (!el) return;
+  el.textContent = value;
+}
+
+function setUI({ ok = false, err = false, loading = false, title = "", detail = "" }) {
+  if (els.box) {
+    els.box.classList.remove("ok", "err");
+    if (ok) els.box.classList.add("ok");
+    if (err) els.box.classList.add("err");
+  }
+
+  if (els.spinner) els.spinner.style.display = loading ? "block" : "none";
+  setText(els.title, title);
+  setText(els.detail, detail);
+}
 
 function getParams() {
   const url = new URL(window.location.href);
@@ -38,73 +105,15 @@ function getParams() {
     mode: url.searchParams.get("mode"),
     oobCode: url.searchParams.get("oobCode"),
     continueUrl: url.searchParams.get("continueUrl"),
-    lang: (url.searchParams.get("lang") || "en").toLowerCase(),
+    lang: url.searchParams.get("lang"),
     debug: url.searchParams.get("debug"),
   };
-}
-
-function i18n(lang) {
-  // Normalize language (ru/ky/en)
-  const l = lang.startsWith("ky") ? "ky" : lang.startsWith("ru") ? "ru" : "en";
-
-  const dict = {
-    en: {
-      verifyingTitle: "Verifying your email…",
-      verifyingDetail: "Please wait.",
-      invalidTitle: "Invalid verification link",
-      invalidDetail: "Please open the latest verification email and try again.",
-      okTitle: "Email verified successfully",
-      okDetail: "You can return to the app now.",
-      failTitle: "Verification failed",
-      failDetail:
-        "This link may be expired or already used. Please request a new verification email from the app.",
-      openApp: "Open the app",
-      goHome: "Go to website",
-    },
-    ru: {
-      verifyingTitle: "Подтверждаем email…",
-      verifyingDetail: "Пожалуйста, подождите.",
-      invalidTitle: "Неверная ссылка подтверждения",
-      invalidDetail: "Откройте самое свежее письмо и попробуйте ещё раз.",
-      okTitle: "Email подтверждён ✅",
-      okDetail: "Теперь можно вернуться в приложение.",
-      failTitle: "Не удалось подтвердить",
-      failDetail:
-        "Ссылка могла устареть или уже была использована. Запросите новое письмо в приложении.",
-      openApp: "Открыть приложение",
-      goHome: "Перейти на сайт",
-    },
-    ky: {
-      verifyingTitle: "Email тастыкталууда…",
-      verifyingDetail: "Сураныч, күтө туруңуз.",
-      invalidTitle: "Тастыктоо шилтемеси туура эмес",
-      invalidDetail: "Эң акыркы катты ачып, кайра аракет кылыңыз.",
-      okTitle: "Email тастыкталды ✅",
-      okDetail: "Эми колдонмого кайта берсеңиз болот.",
-      failTitle: "Тастыктоо ишке ашкан жок",
-      failDetail:
-        "Шилтеме эскирип калган же мурда колдонулган болушу мүмкүн. Колдонмодон жаңы кат сураныңыз.",
-      openApp: "Колдонмону ачуу",
-      goHome: "Сайтка өтүү",
-    },
-  };
-
-  return dict[l];
-}
-
-function setUI({ ok = false, err = false, loading = false, title = "", detail = "" }) {
-  els.box.classList.remove("ok", "err");
-  if (ok) els.box.classList.add("ok");
-  if (err) els.box.classList.add("err");
-
-  els.spinner.style.display = loading ? "block" : "none";
-  els.title.textContent = title;
-  els.detail.textContent = detail;
 }
 
 function safeShowDebug(obj) {
   const { debug } = getParams();
   if (debug !== "1") return;
+  if (!els.debug) return;
 
   els.debug.style.display = "block";
   els.debug.innerHTML =
@@ -115,74 +124,63 @@ function safeShowDebug(obj) {
     "</code>";
 }
 
+/* ---------------- main ---------------- */
 async function run() {
   const { mode, oobCode, continueUrl, lang } = getParams();
-  const tr = i18n(lang);
+  const L = I18N[lang2ruKy(lang)];
 
-  // Localize buttons
-  els.btnOpenApp.textContent = tr.openApp;
-  els.btnHome.textContent = tr.goHome;
+  // Localize any static labels if you added ids in HTML (optional)
+  setText(els.pageTitle, L.pageTitle);
+  setText(els.pageSubtitle, L.pageSubtitle);
+  setText(els.hint, L.hint);
 
-  // Buttons behavior:
-  // If Firebase provided continueUrl, prefer it (common in auth flows)
-  const homeUrl = continueUrl || "https://zhalbyrak.app/";
-  els.btnHome.onclick = () => (window.location.href = homeUrl);
-
-  // If you have deep links, set your scheme here.
-  // Otherwise, just go to site. The user can switch back to the app manually.
-  els.btnOpenApp.onclick = () => {
-    // window.location.href = "zhalbyrak://verified";
-    window.location.href = homeUrl;
-  };
-
-  setUI({
-    loading: true,
-    title: tr.verifyingTitle,
-    detail: tr.verifyingDetail,
-  });
+  if (els.btnOpenApp) els.btnOpenApp.textContent = L.btnOpen;
+  if (els.btnHome) els.btnHome.textContent = L.btnHome;
 
   safeShowDebug({ mode, oobCode, continueUrl, lang });
 
+  setUI({ loading: true, title: L.verifyingTitle, detail: L.verifyingDetail });
+
   if (!oobCode || mode !== "verifyEmail") {
-    setUI({
-      err: true,
-      loading: false,
-      title: tr.invalidTitle,
-      detail: tr.invalidDetail,
-    });
-    els.actions.style.display = "flex";
+    setUI({ err: true, loading: false, title: L.invalidTitle, detail: L.invalidDetail });
+    if (els.actions) els.actions.style.display = "flex";
+    wireButtons();
     return;
   }
 
   try {
+    // Validate first for cleaner errors
     await checkActionCode(auth, oobCode);
+
+    // Apply verification
     await applyActionCode(auth, oobCode);
 
-    setUI({
-      ok: true,
-      loading: false,
-      title: tr.okTitle,
-      detail: tr.okDetail,
-    });
-
-    els.actions.style.display = "flex";
+    setUI({ ok: true, loading: false, title: L.okTitle, detail: L.okDetail });
+    if (els.actions) els.actions.style.display = "flex";
   } catch (e) {
-    console.error(e);
+    console.error("verify.js error:", e);
+    safeShowDebug({ error: e?.code || e?.message || String(e) });
 
-    setUI({
-      err: true,
-      loading: false,
-      title: tr.failTitle,
-      detail: tr.failDetail,
-    });
+    setUI({ err: true, loading: false, title: L.failTitle, detail: L.failDetail });
+    if (els.actions) els.actions.style.display = "flex";
+  }
 
-    // show exact firebase error only when debug=1
-    safeShowDebug({
-      firebaseErrorCode: e?.code || "",
-      firebaseErrorMessage: e?.message || String(e),
-    });
+  wireButtons();
+}
 
-    els.actions.style.display = "flex";
+function wireButtons() {
+  if (els.btnHome) {
+    els.btnHome.onclick = () => {
+      window.location.href = "/";
+    };
+  }
+
+  if (els.btnOpenApp) {
+    els.btnOpenApp.onclick = () => {
+      // If you implement Android App Links / iOS Universal Links, put that URL here.
+      // For now, keep it safe: return to homepage (or Play Store/App Store page).
+      window.location.href = "/";
+    };
   }
 }
 
