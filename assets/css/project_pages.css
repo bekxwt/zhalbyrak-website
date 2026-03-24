@@ -234,3 +234,34 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     object-fit: contain;
 }
+
+.project-media-wrapper {
+    display: flex;
+    flex-wrap: wrap;      /* allow multiple lines if needed */
+    gap: 20px;
+    margin-bottom: 30px;
+    justify-content: center; /* centers content horizontally */
+    align-items: flex-start; /* aligns video top with images */
+}
+
+/* Video container */
+.project-media {
+    flex: 0 0 320px;      /* fixed minimum width */
+    max-width: 500px;     
+    aspect-ratio: 9 / 16; /* for vertical video */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    transition: box-shadow var(--transition-speed);
+    margin: auto;          /* center vertically in flex line */
+}
+
+.project-media iframe,
+.project-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: var(--border-radius);
+}
