@@ -106,10 +106,10 @@ body {
 
 /* ===== IMAGES ===== */
 .project-images {
-    flex: 1 1 300px;          /* flexible area for images */
     display: grid;
     gap: 15px;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* dynamic columns */
+    /* by default: 3 columns */
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .project-images img {
@@ -122,6 +122,28 @@ body {
 
 .project-images img:hover {
     transform: scale(1.05);
+}
+
+/* horizontal images span full width */
+.project-images img.horizontal {
+    grid-column: 1 / -1; /* span all columns */
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .project-media-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .project-media, .project-images {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-images {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+    }
 }
 
 /* ===== SECTION ===== */
