@@ -6,6 +6,31 @@
     <title>VFX for Codify</title>
     <link rel="stylesheet" href="../assets/css/project_pages.css">
 </head>
+
+<div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="Full View">
+</div>
+
+<script>
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const links = document.querySelectorAll('.lightbox-link');
+
+links.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        lightboxImg.src = link.href;
+        lightbox.style.display = 'flex';
+    });
+});
+
+// Close lightbox when clicked
+lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+});
+</script>
+
 <body>
 
 <div class="project-container">
@@ -39,8 +64,12 @@
 
         <!-- Images: add/remove images as needed -->
         <div class="project-images">
-            <img src="../assets/img/projects/codify1.png" alt="Step 1">
-            <img src="../assets/img/projects/codify2.png" alt="Step 2">
+            <a href="images/image1.png" class="lightbox-link">
+                <img src="images/image1_thumb.png" alt="Step 1">
+            </a>
+            <a href="images/image2.png" class="lightbox-link">
+                <img src="images/image2_thumb.png" alt="Step 2">
+            </a>
         </div>
 
     </div>
