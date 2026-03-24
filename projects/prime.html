@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soft-Body simulation</title>
+    <title>Soft-Body Simulation</title>
     <link rel="stylesheet" href="../assets/css/project_pages.css">
 </head>
+
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="Full View">
+</div>
 
 <div class="project-container">
 
     <a href="../portfolio.html" class="back-link">← Back to Portfolio</a>
 
-    <h1 class="project-title">Soft-Body simulation</h1>
+    <h1 class="project-title">Soft-Body Simulation</h1>
     <p class="project-meta">Blender • VFX • Simulation</p>
 
-        <!-- DESCRIPTION -->
+    <!-- DESCRIPTION -->
     <div class="project-description">
         <p>
             This project showcases a product simulation of a soft-body material, demonstrating realistic deformation and interaction with forces.
@@ -23,16 +29,33 @@
         </p>
     </div>
 
-    <!-- MEDIA -->
-    <div class="project-media">
+    <!-- MEDIA WRAPPER -->
+    <div class="project-media-wrapper">
 
-        <iframe 
-            src="https://www.youtube.com/embed/bjZ92q6Ur8k?feature=share" 
-            title="VFX for Codify" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
+        <!-- Video -->
+        <div class="project-media">
+            <iframe 
+                src="https://www.youtube.com/embed/bjZ92q6Ur8k?feature=share" 
+                title="Soft-Body Simulation" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Images: Add your project images here -->
+        <div class="project-images">
+            <a href="../assets/img/projects/prime1.png" class="lightbox-link">
+                <img src="../assets/img/projects/prime1.png" alt="Step 1">
+            </a>
+            <a href="../assets/img/projects/prime2.png" class="lightbox-link">
+                <img src="../assets/img/projects/prime2.png" alt="Step 2">
+            </a>
+            <a href="../assets/img/projects/prime3.png" class="lightbox-link">
+                <img src="../assets/img/projects/prime3.png" alt="Step 3">
+            </a>
+        </div>
+
     </div>
 
     <!-- EXTRA SECTION -->
@@ -40,12 +63,34 @@
         <h3>Techniques Used</h3>
         <div class="project-tags">
             <span class="tag">Blender</span>
-            <span class="tag">Rigid Body</span>
+            <span class="tag">Soft Body</span>
+            <span class="tag">Simulation</span>
             <span class="tag">Compositing</span>
         </div>
     </div>
 
 </div>
+
+<!-- LIGHTBOX SCRIPT -->
+<script>
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const links = document.querySelectorAll('.lightbox-link');
+
+links.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        lightboxImg.src = link.href;
+        lightbox.style.display = 'flex';
+    });
+});
+
+// Close lightbox when clicked
+lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+});
+</script>
 
 </body>
 </html>
