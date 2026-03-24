@@ -245,8 +245,8 @@ body {
 }
 
 .project-media {
-    flex: 0 0 380px;      /* increase minimum width */
-    max-width: 550px;     /* increase maximum width */
+    flex: 0 0 420px;      /* increase minimum width */
+    max-width: 600px;     /* increase maximum width */
     aspect-ratio: 9 / 16; /* vertical video */
     border-radius: var(--border-radius);
     overflow: hidden;
