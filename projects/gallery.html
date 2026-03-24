@@ -50,7 +50,6 @@
             filter: brightness(1.1);
         }
 
-        /* Lightbox */
         .lightbox {
             position: fixed;
             top: 0;
@@ -69,27 +68,25 @@
             max-height: 90%;
             border-radius: 10px;
         }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            text-decoration: none;
+            color: white;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
     </style>
-
-<style>
-.back-link {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1100;
-    text-decoration: none;
-    color: white;
-    background: rgba(255,255,255,0.1);
-    padding: 10px 15px;
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
-    transition: background 0.3s ease;
-}
-
-.back-link:hover {
-    background: rgba(255,255,255,0.2);
-}
-</style>
 </head>
 <body>
 
@@ -97,24 +94,24 @@
 
 <div class="gallery-container">
 
-    <div class="gallery-item"><img src="assets/img/gallery/work1.jpg" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work2.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work3.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work4.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work6.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work5.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work7.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work8.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work9.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work10.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work11.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work12.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work13.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work14.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work15.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work16.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work17.png" alt=""></div>
-    <div class="gallery-item"><img src="assets/img/gallery/work18.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work1.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work2.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work3.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work4.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work5.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work6.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work7.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work8.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work9.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work10.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work11.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work12.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work13.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work14.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work15.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work16.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work17.png" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work18.png" alt=""></div>
 
 </div>
 
@@ -123,32 +120,10 @@
 </div>
 
 <script>
-    const items = document.querySelectorAll('.gallery-item img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    items.forEach(img => {
-        img.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src;
-        });
-    });
-
-    lightbox.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
-</script>
-
-<script>
-// FIX: ensure script runs after DOM loads (important for deployment)
 document.addEventListener('DOMContentLoaded', () => {
     const items = document.querySelectorAll('.gallery-item img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-
-    if (!items.length) {
-        console.error('Images not found. Check paths.');
-    }
 
     items.forEach(img => {
         img.addEventListener('click', () => {
