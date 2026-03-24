@@ -64,13 +64,29 @@ body {
     font-size: 1rem;
 }
 
-/* ===== MEDIA ===== */
+/* ===== DESCRIPTION ===== */
+.project-description {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+/* ===== MEDIA WRAPPER ===== */
+.project-media-wrapper {
+    display: flex;
+    flex-wrap: wrap;          /* allow multiple lines if necessary */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* ===== VIDEO ===== */
 .project-media {
-    width: 100%;
+    flex: 1 1 320px;          /* min width 320px, grow to fill */
+    max-width: 500px;
+    aspect-ratio: 9 / 16;     /* good for vertical videos, use 16/9 for horizontal */
     border-radius: var(--border-radius);
     overflow: hidden;
     background: #000;
-    margin-bottom: 25px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     transition: box-shadow var(--transition-speed);
 }
@@ -79,20 +95,33 @@ body {
     box-shadow: 0 8px 30px rgba(0,0,0,0.7);
 }
 
-.project-media video,
-.project-media iframe {
+.project-media iframe,
+.project-media video {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;        /* fill video container */
     border: none;
     border-radius: var(--border-radius);
 }
 
-/* ===== DESCRIPTION ===== */
-.project-description {
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-bottom: 30px;
+/* ===== IMAGES ===== */
+.project-images {
+    flex: 1 1 300px;          /* flexible area for images */
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* dynamic columns */
+}
+
+.project-images img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+
+.project-images img:hover {
+    transform: scale(1.05);
 }
 
 /* ===== SECTION ===== */
@@ -133,20 +162,30 @@ body {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .project-media-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .project-media, .project-images {
+        max-width: 90%;
+    }
+}
+
 @media (max-width: 768px) {
     .project-title {
         font-size: 2rem;
     }
-
     .project-meta {
         font-size: 0.9rem;
     }
-
     .project-description {
         font-size: 0.95rem;
     }
-
     .project-section h3 {
         font-size: 1.1rem;
+    }
+    .project-images {
+        gap: 10px;
     }
 }
