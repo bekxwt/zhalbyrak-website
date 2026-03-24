@@ -244,29 +244,18 @@ body {
     align-items: flex-start; /* aligns video top with images */
 }
 
-/* ===== VIDEO BASE ===== */
 .project-media {
-    flex: 0 0 420px;
-    max-width: 600px;
+    flex: 0 0 420px;      /* increase minimum width */
+    max-width: 600px;     /* increase maximum width */
+    aspect-ratio: 9 / 16; /* vertical video */
     border-radius: var(--border-radius);
     overflow: hidden;
     background: #000;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     transition: box-shadow var(--transition-speed);
-    margin: auto;
+    margin: auto;          /* centers vertically in flex line */
 }
 
-/* Vertical videos */
-.project-media.vertical {
-    aspect-ratio: 9 / 16;
-}
-
-/* Horizontal videos */
-.project-media.horizontal {
-    aspect-ratio: 16 / 9;
-}
-
-/* Media inside */
 .project-media iframe,
 .project-media video {
     width: 100%;
