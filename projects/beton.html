@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyrgyz Beton</title>
+    <link rel="stylesheet" href="../assets/css/project_pages.css">
+</head>
+
+<div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="Full View">
+</div>
+
+<body>
+
+<div class="project-container">
+
+    <a href="../portfolio.html" class="back-link">← Back to Portfolio</a>
+
+    <h1 class="project-title">Kyrgyz Beton</h1>
+    <p class="project-meta">Blender • VFX • Simulation</p>
+
+    <!-- DESCRIPTION -->
+    <div class="project-description">
+        <p>
+            This project showcases a commercial for "Kyrgyz Beton" for 2025 New Year celebration, 
+            featuring character animation, VFX, particles, CGI reflections, and more.
+        </p>
+    </div>
+
+        <!-- EXTRA SECTION -->
+    <div class="project-section">
+        <h3>Techniques Used</h3>
+        <div class="project-tags">
+            <span class="tag">Blender</span>
+            <span class="tag">AfterEffects</span>
+            <span class="tag">Rotoscoping</span>
+            <span class="tag">Character animation & rigging</span>
+            <span class="tag">Shader editing & material creation</span>
+            <span class="tag">Geometry nodes</span>
+            <span class="tag">Procedural animation</span>
+            <span class="tag">Lighting</span>
+            <span class="tag">Compositing</span>
+        </div>
+    </div>
+
+    <!-- MEDIA WRAPPER -->
+    <div class="project-media-wrapper">
+
+        <!-- Video -->
+        <div class="project-media">
+            <iframe 
+                src="https://www.youtube.com/embed/0A7gVogqmmI" 
+                title="Kyrgyz Beton" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Images: add/remove images as needed -->
+        <div class="project-images">
+            <a href="../assets/img/projects/beton1.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton1.png" alt="Step 1" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton2.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton2.png" alt="Step 2" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton3.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton3.png" alt="Step 3" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton4.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton4.png" alt="Step 4" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton5.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton5.png" alt="Step 5" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton6.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton6.png" alt="Step 6" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton7.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton7.png" alt="Step 7" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton8.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton8.png" alt="Step 8" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton9.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton9.png" alt="Step 9" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton10.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton10.png" alt="Step 10" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton11.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton11.png" alt="Step 11" class="horizontal">
+            </a>
+            <a href="../assets/img/projects/beton12.png" class="lightbox-link">
+                <img src="../assets/img/projects/beton12.png" alt="Step 12" class="horizontal">
+            </a>
+        </div>
+
+    </div>
+</div>
+<script>
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const links = document.querySelectorAll('.lightbox-link');
+
+links.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        lightboxImg.src = link.href;
+        lightbox.style.display = 'flex';
+    });
+});
+
+// Close lightbox when clicked
+lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+});
+</script>
+</body>
+</html>
