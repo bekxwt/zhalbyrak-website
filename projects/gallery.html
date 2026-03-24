@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #0d0d0d;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .gallery-container {
+            column-count: 4;
+            column-gap: 15px;
+            padding: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .gallery-container { column-count: 3; }
+        }
+
+        @media (max-width: 800px) {
+            .gallery-container { column-count: 2; }
+        }
+
+        @media (max-width: 500px) {
+            .gallery-container { column-count: 1; }
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="gallery-container">
+
+    <!-- Repeat this block for your images -->
+    <div class="gallery-item"><img src="assets/images/work1.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work2.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work3.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work4.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work5.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work6.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work7.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work8.jpg" alt=""></div>
+    <div class="gallery-item"><img src="assets/images/work9.jpg" alt=""></div>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+    const items = document.querySelectorAll('.gallery-item img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    items.forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = img.src;
+        });
+    });
+
+    lightbox.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
