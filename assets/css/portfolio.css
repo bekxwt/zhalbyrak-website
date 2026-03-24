@@ -1,7 +1,3 @@
-/* ===============================
-   Portfolio Page Styles
-   =============================== */
-
 /* -------------------- Reset -------------------- */
 *,
 *::before,
@@ -11,29 +7,16 @@
     padding: 0;
 }
 
-html, body {
-    height: 100%;
+body {
     font-family: Arial, sans-serif;
     background: #0f0f0f;
     color: #fff;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
 }
 
 /* -------------------- Header -------------------- */
 .header {
     text-align: center;
     padding: 40px 20px;
-    background: transparent;
 }
 
 .header h1 {
@@ -60,14 +43,16 @@ a {
     gap: 20px;
 }
 
-/* -------------------- Cards -------------------- */
+/* -------------------- Card -------------------- */
 .card {
     background: #1a1a1a;
     border-radius: 12px;
     overflow: hidden;
-    color: #fff;
+    text-decoration: none;
+    color: white;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .card img {
@@ -80,12 +65,12 @@ a {
     padding: 15px;
 }
 
-.card-content h3 {
+.card h3 {
     font-size: 1.1rem;
     margin-bottom: 6px;
 }
 
-.card-content p {
+.card p {
     font-size: 0.9rem;
     color: #bbb;
 }
