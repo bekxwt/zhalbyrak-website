@@ -8,24 +8,42 @@
 </head>
 <body>
 
-<div class="container">
+<div class="project-container">
 
-    <a href="../portfolio.html">← Back</a>
+    <a href="../portfolio.html" class="back-link">← Back to Portfolio</a>
 
-    <h1 style="margin-top:20px;">Robot Transformation</h1>
-    <p style="color:#aaa;">Detailed VFX transformation project</p>
+    <h1 class="project-title">Robot Transformation</h1>
+    <p class="project-meta">Blender • VFX • Simulation</p>
 
-    <!-- VIDEO (IMPORTANT PART) -->
-    <div style="margin-top:20px;">
-        <video controls width="100%" preload="metadata">
-            <source src="../assets/videos/project1.mp4" type="video/mp4">
+    <!-- MEDIA -->
+    <div class="project-media">
+        <!-- OPTION 1: Local video -->
+        <video controls preload="metadata">
+            <source src="../videos/project1.mp4" type="video/mp4">
         </video>
+
+        <!-- OPTION 2: YouTube (replace above if needed) -->
+        <!--
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+        -->
     </div>
 
-    <div style="margin-top:20px;">
+    <!-- DESCRIPTION -->
+    <div class="project-description">
         <p>
-            Description of the project. Explain workflow, tools (Blender, simulations, etc.).
+            This project showcases a transformation sequence where a laptop morphs into a robot.
+            The workflow includes rigid body simulations, procedural animations, and compositing in Blender.
         </p>
+    </div>
+
+    <!-- EXTRA SECTION -->
+    <div class="project-section">
+        <h3>Techniques Used</h3>
+        <div class="project-tags">
+            <span class="tag">Blender</span>
+            <span class="tag">Rigid Body</span>
+            <span class="tag">Compositing</span>
+        </div>
     </div>
 
 </div>
