@@ -14,13 +14,27 @@
         }
 
         .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+            column-count: 4;
+            column-gap: 15px;
             padding: 20px;
         }
 
+        @media (max-width: 1200px) {
+            .gallery-container { column-count: 3; }
+        }
+
+        @media (max-width: 800px) {
+            .gallery-container { column-count: 2; }
+        }
+
+        @media (max-width: 500px) {
+            .gallery-container { column-count: 1; }
+        }
+
         .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+            position: relative;
             cursor: pointer;
         }
 
@@ -114,7 +128,6 @@
     <div class="gallery-item"><img src="../assets/img/gallery/work32.png" alt=""></div>
     <div class="gallery-item"><img src="../assets/img/gallery/work33.jpg" alt=""></div>
     <div class="gallery-item"><img src="../assets/img/gallery/work34.png" alt=""></div>
-
 </div>
 
 <div class="lightbox" id="lightbox">
