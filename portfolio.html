@@ -11,7 +11,7 @@
 
 <header class="header">
     <h1>Bekzat Bakytbek uulu</h1>
-    <p>3D CGI / VFX Artist</p>
+    <p>3D Generalist / VFX Artist</p>
 </header>
 
 <main class="container">
@@ -396,56 +396,29 @@ lightbox.style.display="none";
 
 
 <script>
-
 const filterButtons=document.querySelectorAll(".filters button");
 const projects=document.querySelectorAll(".project-section");
 
+    filterButtons.forEach(button=>{
+        button.onclick=()=>{
+        filterButtons.forEach(btn=>{
+        btn.classList.remove("active");
+    });
 
-filterButtons.forEach(button=>{
+    button.classList.add("active");
 
-
-button.onclick=()=>{
-
-
-filterButtons.forEach(btn=>{
-
-btn.classList.remove("active");
-
+    const filter=button.dataset.filter;
+    projects.forEach(project=>{
+        if(filter==="all" || project.classList.contains(filter)){
+            project.style.display="block";
+        }
+        else{
+            project.style.display="none";
+            }
+        });
+    };
 });
-
-
-button.classList.add("active");
-
-
-const filter=button.dataset.filter;
-
-
-projects.forEach(project=>{
-
-
-if(filter==="all" || project.classList.contains(filter)){
-
-project.style.display="block";
-
-}
-
-else{
-
-project.style.display="none";
-
-}
-
-
-});
-
-
-};
-
-
-});
-
 </script>
-
 
 </body>
 </html>
