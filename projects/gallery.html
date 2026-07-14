@@ -1,160 +1,518 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Gallery | Bekzat Bakytbek uulu</title>
+<link rel="stylesheet" href="../assets/css/portfolio.css">
+<style>
+body {
+    margin: 0;
+    background: #0d0d0d;
+    font-family: Arial, sans-serif;
+    color: white;
+}
 
-    <style>
-        body {
-            margin: 0;
-            background: #0d0d0d;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
+/* HEADER */
 
-        .gallery-container {
-            column-count: 4;
-            column-gap: 15px;
-            padding: 20px;
-        }
+header {
+    text-align:center;
+    padding:40px 20px;
+}
 
-        @media (max-width: 1200px) {
-            .gallery-container { column-count: 3; }
-        }
+header h1 {
+    font-size:2.2rem;
+}
 
-        @media (max-width: 800px) {
-            .gallery-container { column-count: 2; }
-        }
+header p {
+    color:#aaa;
+}
 
-        @media (max-width: 500px) {
-            .gallery-container { column-count: 1; }
-        }
+/* FILTERS */
 
-        .gallery-item {
-            break-inside: avoid;
-            margin-bottom: 15px;
-            position: relative;
-            cursor: pointer;
-        }
+.filters {
+    margin-top:25px;
+}
 
-        .gallery-item img {
-            width: 100%;
-            border-radius: 12px;
-            display: block;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
+.filters button {
+    background:#1a1a1a;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    margin:5px;
+    border-radius:8px;
+    cursor:pointer;
+}
 
-        .gallery-item:hover img {
-            transform: scale(1.03);
-            filter: brightness(1.1);
-        }
+.filters button.active {
+    background:white;
+    color:black;
+}
 
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+/* GALLERY */
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
+.gallery {
 
-        .back-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1100;
-            text-decoration: none;
-            color: white;
-            background: rgba(255,255,255,0.1);
-            padding: 10px 15px;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-            transition: background 0.3s ease;
-        }
+    column-count:4;
+    column-gap:15px;
+    padding:20px;
 
-        .back-link:hover {
-            background: rgba(255,255,255,0.2);
-        }
-    </style>
+}
+
+.item {
+
+    break-inside:avoid;
+    margin-bottom:15px;
+}
+
+.item img,
+.item iframe {
+
+    width:100%;
+    display:block;
+    border-radius:12px;
+}
+
+.item iframe {
+
+    aspect-ratio:16/9;
+    border:none;
+
+}
+
+/* HOVER */
+
+.item img {
+
+    transition:0.3s ease;
+    cursor:pointer;
+
+}
+
+.item:hover img {
+
+    transform:scale(1.03);
+    filter:brightness(1.1);
+
+}
+
+/* LIGHTBOX */
+
+#lightbox {
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.9);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:1000;
+
+}
+
+#lightbox img {
+
+    max-width:90%;
+    max-height:90%;
+
+    border-radius:12px;
+
+}
+
+/* BACK BUTTON */
+
+.back-link {
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    z-index:1100;
+
+    color:white;
+
+    text-decoration:none;
+
+    background:rgba(255,255,255,0.1);
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    backdrop-filter:blur(5px);
+
+}
+
+@media(max-width:1200px){
+
+.gallery{
+    column-count:3;
+}
+
+}
+
+@media(max-width:800px){
+
+.gallery{
+    column-count:2;
+}
+}
+
+@media(max-width:500px){
+
+.gallery{
+    column-count:1;
+}
+}
+</style>
 </head>
 <body>
+<a href="../index.html" class="back-link">← Back to Portfolio</a>
+<header>
+<h1>3D Portfolio Gallery</h1>
+<p>Modeling • Product Visualization • Architectural Visualization • Experiments</p>
+<div class="filters">
+<button class="active" data-filter="all">All</button>
+<button data-filter="modeling">Modeling</button>
+<button data-filter="product">Product</button>
+<button data-filter="visualization">Visualization</button>
+<button data-filter="experiments">Experiments</button>
+</div>
+</header>
+<main class="gallery">
 
-<a href="../portfolio.html" class="back-link">← Back to Portfolio</a>
+<!-- ================= MODELING ================= -->
 
-<div class="gallery-container">
-
-    <div class="gallery-item"><img src="../assets/img/gallery/work1.jpg" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work2.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work3.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work4.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work5.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work6.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work7.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work8.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work9.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work10.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work11.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work12.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work13.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work14.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work15.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work16.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work17.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work18.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work19.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work20.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work21.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work22.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work23.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work24.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work25.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work26.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work27.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work28.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work29.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work30.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work31.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work32.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work33.jpg" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work34.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work35.png" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/work36.jpg" alt=""></div>
-    <div class="gallery-item"><img src="../assets/img/gallery/MPay.png" alt=""></div>
+<div class="item modeling">
+<img src="../assets/img/gallery/modeling/B244C3FC-0040-4C32-B57D-53B4E585A88F.png">
 </div>
 
-<div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="" alt="">
+
+<div class="item modeling">
+<img src="../assets/img/gallery/modeling/cannon.png">
 </div>
 
+
+<div class="item modeling">
+<img src="../assets/img/gallery/modeling/denjil .png">
+</div>
+
+
+<div class="item modeling">
+<img src="../assets/img/gallery/modeling/guitar.png">
+</div>
+
+
+<div class="item modeling">
+<img src="../assets/img/gallery/modeling/minigun.png">
+</div>
+
+<!-- ================= PRODUCT ================= -->
+
+<div class="item product">
+
+<iframe 
+src="https://www.youtube.com/embed/7FpZwKXeloo"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="item product">
+<iframe 
+src="https://www.youtube.com/embed/_bGoUhFCPiQ"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="item product">
+<img src="../assets/img/gallery/product/rolexl .png">
+</div>
+
+
+<div class="item product">
+<img src="../assets/img/gallery/product/rolex2.png">
+</div>
+
+
+<div class="item product">
+<img src="../assets/img/gallery/product/TOMIWELLA.jpg">
+</div>
+
+<!-- ================= VISUALIZATION ================= -->
+
+<div class="item visualization">
+<img src="../assets/img/gallery/visualization/bathroom.png">
+</div>
+
+<div class="item visualization">
+<img src="../assets/img/gallery/visualization/kitchen.png">
+</div>
+
+<div class="item visualization">
+<img src="../assets/img/gallery/visualization/LivingRoom1_1 .png">
+</div>
+
+<div class="item visualization">
+<img src="../assets/img/gallery/visualization/r3.png">
+</div>
+
+
+<!-- ================= EXPERIMENTS ================= -->
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work1.jpg">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work2.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work3.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work4.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work5.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work6.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work7.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work8.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work9.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work10.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work11.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work12.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work13.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work14.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work15.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work16.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work17.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work18.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work19.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work20.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work21.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work22.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work23.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work24.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work25.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work26.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work27.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work28.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work29.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work30.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work31.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work32.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work33.jpg">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work34.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work35.png">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/work36.jpg">
+</div>
+
+
+<div class="item experiments">
+<img src="../assets/img/gallery/MPay.png">
+</div>
+
+</main>
+<div id="lightbox">
+<img id="lightbox-img">
+</div>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.gallery-item img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
 
-    items.forEach(img => {
-        img.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src;
-        });
-    });
+// FILTERS
 
-    lightbox.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
+const buttons=document.querySelectorAll(".filters button");
+
+const items=document.querySelectorAll(".item");
+
+
+buttons.forEach(button=>{
+
+
+button.onclick=()=>{
+
+
+buttons.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+
+const filter=button.dataset.filter;
+
+
+
+items.forEach(item=>{
+
+
+item.style.display =
+(filter==="all" || item.classList.contains(filter))
+?
+"block"
+:
+"none";
 });
+};
+});
+// LIGHTBOX
+
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
+document.querySelectorAll(".item img").forEach(img=>{
+
+
+img.onclick=()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+};
+});
+
+lightbox.onclick=()=>{
+lightbox.style.display="none";
+};
+
+
 </script>
 
 </body>
+
 </html>
