@@ -1,0 +1,65 @@
+<svg viewBox="0 0 520 620" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f2efe6"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a2e28"/>
+      <stop offset="100%" stop-color="#241c18"/>
+    </linearGradient>
+    <radialGradient id="skin" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#f2c9a3"/>
+      <stop offset="100%" stop-color="#e3ac7e"/>
+    </radialGradient>
+  </defs>
+
+  <!-- book on desk -->
+  <rect x="40" y="560" width="440" height="18" rx="6" fill="#6d8d3b" opacity="0.18"/>
+  <rect x="70" y="540" width="220" height="26" rx="4" fill="#dfd6bd"/>
+  <rect x="70" y="540" width="220" height="8" rx="4" fill="#efe8d6"/>
+
+  <!-- shoulders / shirt -->
+  <path d="M100 620 C 100 460 170 400 260 400 C 350 400 420 460 420 620 Z" fill="url(#shirt)"/>
+  <path d="M215 400 L 260 460 L 305 400 L 260 430 Z" fill="#eae5d6"/>
+  <path d="M100 620 C 108 540 150 470 215 430 L 240 470 L 190 620 Z" fill="#f6f3ea"/>
+  <path d="M420 620 C 412 540 370 470 305 430 L 280 470 L 330 620 Z" fill="#f6f3ea"/>
+
+  <!-- neck -->
+  <rect x="230" y="345" width="60" height="70" fill="#e3ac7e"/>
+
+  <!-- head -->
+  <ellipse cx="260" cy="270" rx="95" ry="105" fill="url(#skin)"/>
+
+  <!-- hair back -->
+  <path d="M150 250 C 140 140 190 70 260 70 C 335 70 385 145 372 258 C 372 258 372 330 350 400 C 350 400 372 300 358 240 C 358 240 340 180 260 178 C 185 178 168 235 168 260 C 168 300 172 340 172 340 C 150 320 150 280 150 250 Z" fill="url(#hair)"/>
+
+  <!-- hair front / bangs -->
+  <path d="M168 262 C 160 190 200 120 260 118 C 322 118 362 188 354 258 C 354 258 340 210 320 195 C 300 225 270 200 260 205 C 250 200 222 225 202 197 C 182 212 172 235 168 262 Z" fill="url(#hair)"/>
+
+  <!-- ears -->
+  <ellipse cx="163" cy="278" rx="12" ry="18" fill="#e3ac7e"/>
+  <ellipse cx="357" cy="278" rx="12" ry="18" fill="#e3ac7e"/>
+
+  <!-- eyebrows -->
+  <path d="M215 250 Q 232 240 250 248" stroke="#2c221d" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M275 248 Q 293 240 310 250" stroke="#2c221d" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- eyes -->
+  <path d="M218 264 Q 233 258 248 264" stroke="#2c221d" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M277 264 Q 292 258 307 264" stroke="#2c221d" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- nose -->
+  <path d="M260 268 L 253 300 Q 260 306 268 300" stroke="#c98f5e" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- mouth -->
+  <path d="M232 322 Q 262 340 290 322" stroke="#a85a4a" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- cheeks blush -->
+  <ellipse cx="205" cy="300" rx="16" ry="9" fill="#e79a7a" opacity="0.35"/>
+  <ellipse cx="317" cy="300" rx="16" ry="9" fill="#e79a7a" opacity="0.35"/>
+
+  <!-- earrings -->
+  <circle cx="163" cy="298" r="4" fill="#c9a227"/>
+  <circle cx="357" cy="298" r="4" fill="#c9a227"/>
+</svg>
