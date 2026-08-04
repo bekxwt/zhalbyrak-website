@@ -50,8 +50,21 @@ nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:
 .avatars span:nth-child(3){background:linear-gradient(135deg,#c9b7e8,#8a6bc9)}
 .proof p{margin:0;font-size:14px;color:var(--muted);line-height:1.5}
 
-.right{position:relative;display:flex;justify-content:center}
-.right img{width:480px;max-width:100%;position:relative;z-index:2;filter:drop-shadow(0 30px 40px rgba(0,0,0,.12))}
+.right{
+    position:relative;
+    display:flex;
+    justify-content:flex-start;   /* move image toward the left */
+    padding-left:20px;            /* adjust this value */
+}
+
+.right img{
+    width:600px;                  /* increase image size */
+    max-width:none;               /* prevents it from shrinking */
+    position:relative;
+    left: -120px;                 /* move image further left */
+    z-index:2;
+    filter:drop-shadow(0 30px 40px rgba(0,0,0,.12));
+}
 .quote{position:absolute;right:-10px;top:70px;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);padding:26px 24px;border-radius:22px;width:230px;z-index:3;box-shadow:0 20px 40px rgba(0,0,0,.08)}
 .quote .mark{font:700 34px 'Playfair Display',serif;color:var(--green);line-height:.6;display:block;margin-bottom:6px}
 .quote p{margin:0 0 10px;font:italic 16px/1.55 'Playfair Display',serif;color:#2c2a25}
